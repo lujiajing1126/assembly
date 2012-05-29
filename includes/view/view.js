@@ -150,8 +150,9 @@ function Host(hostList, select) {
     HBCLASS = "host_button",
     HBCCLASS = "host_button_core",
     HBCCLASSX = "host_button_core_selected",
-    HBRCLASS = "host_button_remover",
+    HBRCLASS = "ui-icon ui-icon-close",
     HBRBCLASS = "host_button_remover_box",
+    HACCLASS = "host_add_container",
     HABCLASS = "host_add_button",
     HAICLASS = "host_add_input_box";
   var _this = this;
@@ -159,13 +160,25 @@ function Host(hostList, select) {
   this.addHost = function (id, name, mandatory) {
     $("#host").append(this.createHostButton(id, name, mandatory));
   };
+  this.moveCustomButton = function () {
+  	var
+  		r = $(".CustomHostPreparing").prev(),
+  		o = r.offset();
+  	o.left += r.width();
+    this.customButton.offset(o);
+  }
   this.addCustomButton = function () {
-    $("#host").append(this.createHostPreparingButton());
+    $(".CustomHostPreparing").removeClass("CustomHostPreparing");
+    $("#host").append($("<li/>").addClass("CustomHostPreparing").addClass(HBCLASS));
+    $("body").append(_this.customButton);
+    this.moveCustomButton();
   };
   this.addWildButton = function (id, name, mandatory) {
     $("#host").append(this.createWildButton(id, name, mandatory));
   };
-  this.customButtonInputBox = $("<input type=\"text\"/>", {"class": HAICLASS})
+  var customButtonStatus = false;
+  this.customButtonInputBox = $("<input type=\"text\"/>")
+    .addClass(HAICLASS)
     .keypress(
       function(event) {
         if (event.keyCode == 13) {
@@ -180,19 +193,24 @@ function Host(hostList, select) {
             if ( document.activeElement != t
               && !$(document.activeElement).data("temporaryFocus")
               && document.activeElement != _this._customButtonCore) {
-              $(t).hide(300);
-              _this.customButton.data("status", false);
+              _this.customButtonCore.trigger("expandmode");
+              customButtonStatus = false;
+              _this.customButtonInputWidget.hide(300);
             }
           }, 200);
       })
-    .css("display", "inline")
+  this.customButtonInputWidget = $("<div/>")
+    .addClass("ui-widget")
+    .append(this.customButtonInputBox)
     .hide();
-  this.customButtonInputBoxWrap = $("<div/>", {style: "display: inline-block;"})
-    .append(this.customButtonInputBox);
-  this.customButtonCore = $("<span/>", {"class": HABCLASS})
+  this.customButtonInputBox.autocomplete({
+  		appendTo: this.customButtonInputWidget,
+      source: ajaxAddr + "?routine=get_host_prompt"
+    });
+  this.customButtonCore = $("<div/>", {"class": HABCLASS})
     .click(
       function () {
-        if ($(this).parent().data("status")) {
+        if (customButtonStatus) {
           $.ajax({
             url: ajaxAddr,
             data: {
@@ -200,43 +218,41 @@ function Host(hostList, select) {
               host: _this.customButtonInputBox.val()
             },
             dataType: "json",
-            context: $(this).parent().data("manager"),
+            context: _this,
             success: function (data) {
               if (!data.found) {
                 timedPrompt("未找到该组织", 2500);
               } else if (data.id in this.list) {
                 timedPrompt("该组织已经添加", 2000);
               } else {
-                this.createHostButtonContent(this.customButton.parent(), data.id, data.name, false);
+                this.createHostButtonContent($(".CustomHostPreparing"), data.id, data.name, false);
                 this.selectHost(data.id);
                 this.addCustomButton();
-                _this.customButtonInputBox.focus().val("");
+                this.customButtonInputBox.focus().val("");
               }
             }
           });
         } else {
-          _this.customButtonInputBox.show(300,
+          $(this).trigger("entermode");
+          _this.customButtonInputWidget.show(300,
             function () {
               _this.customButtonInputBox.focus();
             });
-          _this.customButton.data("status", true);
+          customButtonStatus = true;
         }
       });
-  this.customButton = $("<span/>")
-    .data("status", false)
-    .data("manager", this)
-    .append($.browser.mozilla? this.customButtonInputBoxWrap : this.customButtonInputBox)
-    .append(this.customButtonCore);
-  this.createHostPreparingButton = function () {
-    var hpb = $("<li/>", {"class": HBCLASS})
-      .append(this.customButton);
-    return hpb;
-  };
+  this.customButton = $("<table/>")
+    .addClass(HACCLASS)
+    .append(
+      $("<tr/>")
+        .append($("<td/>").append(this.customButtonInputWidget))
+        .append($("<td/>").append(this.customButtonCore)));
   this.dropHost = function (id) {
     this.list[id].button.hide(300, function () {
       _this.list[id].button.remove();
       delete _this.list[id];
       refreshResult();
+      _this.moveCustomButton();
     });
   };
   this.selectHost = function (id) {
@@ -256,58 +272,51 @@ function Host(hostList, select) {
   this.uploadHostList = function () {};
   this.hostButtonCoreClick = function () {
     var
-      manager = $(this).data("manager"),
       id = $(this).data("id");
-    if (manager.list[id].selected) {
-      manager.deselectHost(id);
+    if (_this.list[id].selected) {
+      _this.deselectHost(id);
     } else {
       if (id == "#ALL#") {
-        for (var ID in manager.list)
+        for (var ID in _this.list)
           if (ID != id)
-            manager.deselectHost(ID);
+            _this.deselectHost(ID);
       } else {
-         manager.deselectHost("#ALL#");
+         _this.deselectHost("#ALL#");
       }
-      manager.selectHost(id);
+      _this.selectHost(id);
     }
   };
   this.hostButtonIn = function (ev) {
     var
-      manager = $(this).data("manager"),
       id = $(this).data("id");
-    if (!manager.list[id].mandatory)
-      manager.list[id].remover.fadeIn(300);
+    if (!_this.list[id].mandatory)
+      _this.list[id].remover.fadeIn(300);
   }
   this.hostButtonOut = function (ev) {
     var
-      manager = $(this).data("manager"),
       id = $(this).data("id");
-    if (!manager.list[id].mandatory)
-      manager.list[id].remover.fadeOut(300);
+    if (!_this.list[id].mandatory)
+      _this.list[id].remover.fadeOut(300);
   }
   this.hostButtonRemoverClick = function () {
     var
-      manager = $(this).data("manager"),
       id = $(this).data("id");
-      manager.dropHost(id);
+      _this.dropHost(id);
   }
   this.createHostButtonContent = function (hostButton, hostId, hostName, hostMandatory) {
     var
       rm = $("<span/>", {"class": HBRCLASS})
         .data("id", hostId)
-        .data("manager", this)
         .click(this.hostButtonRemoverClick)
         .hide(),
       rmBox = $("<span/>", {"class": HBRBCLASS})
         .append(rm),
       hostButtonCore = $("<span/>", {"class": HBCCLASS})
         .data("id", hostId)
-        .data("manager", this)
         .append(hostName)
         .click(this.hostButtonCoreClick);
     hostButton
         .data("id", hostId)
-        .data("manager", this)
         .append(hostButtonCore)
         .append(rmBox)
         .hover(this.hostButtonIn, this.hostButtonOut);
@@ -320,6 +329,7 @@ function Host(hostList, select) {
       remover: rm
     };
     return hostButton;
+    this.moveCustomButton();
   };
   this.createHostButton = function (hostId, hostName, hostMandatory) {
     return this.createHostButtonContent($("<li/>", {"class": HBCLASS}), hostId, hostName, hostMandatory);
@@ -327,10 +337,6 @@ function Host(hostList, select) {
   this.createWildButton = function () {
     return this.createHostButtonContent($("<li/>", {"class": HBCLASS}), "#ALL#", "全部", true);
   };
-  this.customButtonInputBox.autocomplete({
-    source: ajaxAddr + "?routine=get_host_prompt",
-    appendTo: this.customButton
-    });
   this.initialize = function () {
     this.addWildButton();
     for (var hostId in hostList) {
@@ -438,9 +444,13 @@ function styleCheckboxAndRadio() {
         .data("label", $(this))
         .change();
       updator.call(b);
-      $(this).click(
-        function (event) {
+      $(this).click(function (event) {
           event.preventDefault();
+          b.click();
+          updator.call(b);
+          b.change();
+        });
+      $(this).find(":text").click(function (event) {
           b.click();
           updator.call(b);
           b.change();
@@ -478,6 +488,24 @@ function collectOptionFor(s) {
 $(document).ready(function () {
   path.initialize();
   host.initialize();
+  $(".host_add_button").bind("expandmode",
+    function () {
+      var b = $(this);
+      b.find("*").fadeOut(300,
+        function () {
+          $(this).remove();
+        });
+      b.append($("<div/>", {"class": "ui-icon ui-icon-circle-plus"}).hide().fadeIn(300))
+    }).trigger("expandmode");
+  $(".host_add_button").bind("entermode",
+    function () {
+      var b = $(this);
+      b.find("*").fadeOut(300,
+        function () {
+          $(this).remove();
+        });
+      b.append($("<div/>", {"class": "ui-icon ui-icon-circle-check"}).hide().fadeIn(300));
+    });
   styleCheckboxAndRadio();
   moniterResultRelatedObject();
   refreshResult(true);
@@ -518,7 +546,7 @@ var
         "_default": {}
         }
     },
-    ["活动", null])
+    ["活动", null]),
   host = new Host(
     {
       "su": ["学生会", true],
@@ -529,5 +557,3 @@ var
     ["su"]),
   range = [0, 10],
   pageSize = 5;
-
-
