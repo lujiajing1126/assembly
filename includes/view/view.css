@@ -1,0 +1,111 @@
+#type {
+  height: 20px;
+  margin: 0px;
+}
+#type {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+}
+.type_button {
+  background-color: yellow;
+  width: 40px;
+  display: inline;
+}
+.type_button_selected {
+  background-color: red;
+  width: 40px;
+  display: inline;
+}
+#subtype_boxes {
+  height: 20px;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+}
+.subtype_box {
+  list-style-type: none;
+  list-style-position: outside;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding: 0px;
+  margin: 0px;
+  background-color: lavender;
+}
+.subtype_button {
+  background-color: green;
+  width: 40px;
+  display: inline;
+}
+.subtype_button_selected {
+  background-color: blue;
+  width: 40px;
+  display: inline;
+}
+#host {
+  list-style-type: none;
+  list-style-position: outside;
+  padding: 0px;
+  margin: 0px;
+}
+.host_button {
+  display: inline;
+  white-space: nowrap;
+}
+.host_button_core {
+  display: inline-block;
+}
+.host_button_core_selected {
+  background-color: yellow;
+  display: inline-block;
+}
+.host_button_remover {
+  width: 10px;
+  height: 10px;
+  background-color: red;
+  display: inline-block;
+}
+.host_button_remover_box {
+  width: 10px;
+  height: 10px;
+  display: inline-block;
+}
+.host_add_button {
+  display: inline-block;
+  width: 15px;
+  height: 15px;
+  background-color: orange;
+}
+.host_add_input_box {
+  display: inline;
+}
+#result_list_left {
+  width: 50%;
+  left: 0%;
+  position: absolute;
+}
+#result_list_right {
+  width: 50%;
+  left: 50%;
+  position: absolute;
+}
+#result {
+  position relative;
+}
+.result_block {
+  margin: 20px;
+}
+.special_styled_radio {
+  background-color: blue;
+}
+.special_styled_radio_checked {
+  background-color: red;
+}
+.special_styled_checkbox {
+  background-color: green;
+}
+.special_styled_checkbox_checked {
+  background-color: purple;
+}
+
