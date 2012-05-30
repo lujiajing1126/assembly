@@ -67,7 +67,7 @@
   white-space: nowrap;
   padding: 0px;
   margin: 0px;
-  line-height: 0px;
+  line-height: 20px;
   font-size: 0px;
 }
 .host_button_core, .host_button_core_selected {
@@ -77,6 +77,10 @@
   border-style: none none dotted none;
   border-color: transparent;
   border-width: 2px;
+}
+.host_button_preparing {
+  float: left;
+  width: 0px;
 }
 .host_button_core_selected {
   border-color: #A30000;
@@ -93,7 +97,7 @@
 }
 .host_add_button {
   width: 16px;
-  height: 22px;
+  height: 23px;
   position: relative;
 }
 .host_add_button * {

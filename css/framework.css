@@ -1,3 +1,7 @@
+html {
+  overflow-y: scroll;
+}
+
 body.frame {
 	background-color: #b8b8b8;
 }
@@ -111,18 +115,26 @@ div.frame_nav ol {
 	margin-right: 36px;
 }
 
-div.frame_nav li {
+div.frame_nav ol a {
+	text-decoration: none;
+}
+
+div.frame_nav li,
+div.frame_nav li a {
 	font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
 	color: white;
 	float: left;
 	width: 8em;
 }
 
-div.frame_nav li.frame_nav_checked {
+div.frame_nav li.frame_nav_checked,
+div.frame_nav li.frame_nav_checked a {
 	color: #cc0000;
 }
 
-div.frame_nav li:hover {
+div.frame_nav li:hover,
+div.frame_nav li:hover a,
+div.frame_nav li a:hover {
 	color: #cc0000;
 }
 

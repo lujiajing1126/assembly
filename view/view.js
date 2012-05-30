@@ -148,6 +148,7 @@ function timedPrompt(text, timeout) {
 function Host(hostList, select) {
   var
     HBCLASS = "host_button",
+    HBPCLASS = "host_button_preparing",
     HBCCLASS = "host_button_core",
     HBCCLASSX = "host_button_core_selected",
     HBRCLASS = "ui-icon ui-icon-close",
@@ -161,16 +162,18 @@ function Host(hostList, select) {
     $("#host").append(this.createHostButton(id, name, mandatory));
   };
   this.moveCustomButton = function () {
-    var
-      r = $(".CustomHostPreparing").prev(),
-      o = r.offset();
-    o.left += r.width();
-    this.customButton.offset(o);
+    this.customButton.offset(function () {
+        var
+          r = $("." + HBPCLASS).prev(),
+          o = r.offset();
+          o.left += r.width();
+          return o;
+      });
   }
   this.addCustomButton = function () {
-    $(".CustomHostPreparing").removeClass("CustomHostPreparing");
-    $("#host").append($("<li/>").addClass("CustomHostPreparing").addClass(HBCLASS));
-    $("body").append(_this.customButton);
+    $("." + HBPCLASS).removeClass(HBPCLASS);
+    $("#host").append($("<li/>").addClass(HBPCLASS).addClass(HBCLASS));
+    $("." + HBPCLASS).append(_this.customButton);
     this.moveCustomButton();
   };
   this.addWildButton = function (id, name, mandatory) {
@@ -225,7 +228,7 @@ function Host(hostList, select) {
               } else if (data.id in this.list) {
                 timedPrompt("该组织已经添加", 2000);
               } else {
-                this.createHostButtonContent($(".CustomHostPreparing"), data.id, data.name, false);
+                this.createHostButtonContent($("." + HBPCLASS), data.id, data.name, false);
                 this.selectHost(data.id);
                 this.addCustomButton();
                 this.customButtonInputBox.focus().val("");
@@ -241,7 +244,7 @@ function Host(hostList, select) {
           customButtonStatus = true;
         }
       });
-  this.customButton = $("<table/>")
+  this.customButton = $("<table/>", {style: "float: left; display: inline-block;"})
     .addClass(HACCLASS)
     .append(
       $("<tr/>")
@@ -401,6 +404,7 @@ function refreshResult(force) {
                   .append(item.content))
               .appendTo(tl);
           }
+          host.moveCustomButton();
         }
       });
     }, REFRESHINT);

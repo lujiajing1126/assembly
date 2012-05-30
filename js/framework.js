@@ -15,8 +15,9 @@ var
 	frameNavOl = $("<ol/>").appendTo(frameNav),
 	frameBot = frameNewDivOf("frame_bot"),
 	frameBotRef = frameNewDivOf("frame_bot_ref")
-		.attr("style", "position: absolute")
-		.append(frameBot);
+		.attr("style", "position: relative")
+		.append(frameBot)
+		.appendTo(frameMainbox);
 
 function framePrepareFrameNav() {
 	$.ajax({
@@ -24,16 +25,17 @@ function framePrepareFrameNav() {
 		dataType: "json",
 		cache: false,
 		success: function (data) {
-				for (item in data.link) {
+				for (var item = 0; item != data.link.length; ++item) {
 					var curr;
 					frameNavOl
 						.append(
 							curr = $("<li/>")
-								.append(data.link[item].text)
 								.data("openlink", data.link[item].url)
 								.click(function () {
 										window.location = $(this).data("openlink")
-									}));
+									})
+								.append($("<a/>", {href: data.link[item].url})
+										.append(data.link[item].text)));
 					if (data.link[item].url == window.location.pathname + window.location.search)
 						curr.addClass("frame_nav_checked");
 				}
@@ -50,10 +52,10 @@ function framePrepareframeBot() {
 		dataType: "json",
 		cache: false,
 		success: function (data) {
-				for (item in data.content) {
+				for (var item = 0; item != data.content.length; ++item) {
 					frameBot.append($(data.content[item]));
 				}
-				for (item in data.decorator) {
+				for (var item = 0; item != data.decorator.length; ++item) {
 					frameBotRef.append($(data.decorator[item]));
 				}
 			}
@@ -66,7 +68,7 @@ function frameBarLayout() {
 
 function frameBarLayoutLV() {
 	frameBarLayout();
-	setTimeout(function() {frameBarLayoutLV();}, 500);
+	setTimeout(function() {frameBarLayoutLV();}, 250);
 }
 
 function frameEnclose() {
@@ -78,7 +80,6 @@ function frameEnclose() {
 		body
 			.addClass("frame")
 			.append(frameNavRef)
-			.append(frameBotRef)
 			.append(frame);
 		frameMainbox.bind("refresh_bar_position", function () {
 				frameNavRef.offset(frameMainbox.offset());
