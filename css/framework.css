@@ -1,0 +1,128 @@
+body.frame {
+	background-color: #b8b8b8;
+}
+
+div.frame_frame {
+	width: 924px;
+	margin-left: auto;
+	margin-right: auto;
+	-webkit-box-shadow:0px 0px 50px #000000;
+}
+
+div.banner {
+	width:924px;
+	height:120px;
+	margin:0px;
+	background-image: url('/images/frame/banner.png');
+}
+
+div.frame_content {
+	background-color: transparent;
+	margin: 0px 37px 0px 37px;
+	height: auto;
+}
+
+div.frame_mainbox {
+	background-color: white;
+	min-height: 100px;
+	width: inherit;
+	height: auto;
+	margin: 0px;
+	padding: 50px 0px 50px 0px;
+}
+
+div.frame_nav_ref,
+div.frame_bot_ref {
+	width: 924px;
+}
+
+div.frame_nav,
+div.frame_bot {
+	position: absolute;
+	left: -36px;
+	width: 996px;
+	background-color: #2a0102;
+	height: 41px;
+	font-size: 18px;
+	line-height: 41px;
+	text-align: center;
+}
+
+div.frame_bot {
+	top: 59px;
+}
+
+div.frame_nav *,
+div.frame_bot * {
+	margin: 0px;
+	padding: 0px;
+}
+
+div.frame_nav_dec_l,
+div.frame_nav_dec_r,
+div.frame_bot_dec_l,
+div.frame_bot_dec_r {
+	position: absolute;
+	width: 36px;
+}
+
+div.frame_nav_dec_l,
+div.frame_nav_dec_r {
+	height:111px;
+	top: -35px;
+}
+
+div.frame_bot_dec_l,
+div.frame_bot_dec_r {
+	height:76px;
+	top: 24px;
+}
+
+div.frame_nav_dec_l,
+div.frame_bot_dec_l {
+	left: -36px;
+}
+
+div.frame_nav_dec_r,
+div.frame_bot_dec_r {
+	right: -36px;
+}
+
+div.frame_nav_dec_l {
+	background-image: url('/images/frame/bar_end_l.png');
+}
+
+div.frame_nav_dec_r {
+	background-image: url('/images/frame/bar_end_r.png');
+}
+
+div.frame_bot_dec_l {
+	background-image: url('/images/frame/bottom_bar_end_l.png');
+}
+
+div.frame_bot_dec_r {
+	background-image: url('/images/frame/bottom_bar_end_r.png');
+}
+
+div.frame_nav ol {
+	list-style-type: none;
+	list-style-position: outside;
+	margin-left: 36px;
+	margin-right: 36px;
+}
+
+div.frame_nav li {
+	font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+	color: white;
+	float: left;
+	width: 8em;
+}
+
+div.frame_nav li.frame_nav_checked {
+	color: #cc0000;
+}
+
+div.frame_nav li:hover {
+	color: #cc0000;
+}
+
