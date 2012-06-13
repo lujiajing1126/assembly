@@ -17,7 +17,9 @@ var
 	frameBotRef = frameNewDivOf("frame_bot_ref")
 		.attr("style", "position: relative")
 		.append(frameBot)
-		.appendTo(frameMainbox);
+		.appendTo(frame),
+	framePrompt = frameNewDivOf("frame_prompt")
+		.appendTo(frame);
 
 function framePrepareFrameNav() {
 	$.ajax({
@@ -62,6 +64,17 @@ function framePrepareframeBot() {
 		});
 }
 
+function framePreparePrompt() {
+	$.ajax({
+		url: "/system/user_info_prompt",
+		dataType: "html",
+		cache: false,
+		success: function (data) {
+				framePrompt.append(data);
+			}
+		});
+}
+
 function frameBarLayout() {
 	frameMainbox.trigger("refresh_bar_position");
 }
@@ -76,6 +89,7 @@ function frameEnclose() {
 	if (!body.find("div.frame_prevent").length) {
 		framePrepareFrameNav();
 		framePrepareframeBot();
+		framePreparePrompt();
 		body.find("> *").appendTo(frameCore);
 		body
 			.addClass("frame")
@@ -85,7 +99,7 @@ function frameEnclose() {
 				frameNavRef.offset(frameMainbox.offset());
 				frameBotRef.offset(function () {
 						var o = frameMainbox.offset();
-						o.top += frameMainbox.height();
+						o.top += frameMainbox.innerHeight();
 						return o;
 					});
 			});

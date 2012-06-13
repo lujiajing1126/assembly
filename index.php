@@ -1,3 +1,4 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
@@ -9,57 +10,72 @@
 		<script type="text/javascript" src="/js/framework.js"></script>
 
 		<link rel="stylesheet" type="text/css" href="/css/index.css" />
+		<script type="text/javascript" src="/js/index.js"></script>
 	</head>
 	<body>
-<div id="iFlash">
-</div>
-<div id="kjfw">
-</div>
-<div id="tzygs">
-<a class="titile">通知与告示</a>&nbsp;<img src="images/hr.png" />
-<ul>
-<li>【活动】活动活动活动活动活动</li>
-<li>【活动】活动活动活动活动</li>
-<li>【活动】活动活动活动活动活动活动</li>
-<li>【活动】活动活动活动活动</li>
-</ul>
-<div class="more">
-<a href="more" class="more">更多</a>
-</div>
-</div>
-<div id="sthd">
-<a class="titile">社团活动</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/hr.png" />
-<ul>
-<li>【活动】活动活动活动活动活动</li>
-<li>【活动】活动活动活动活动</li>
-<li>【活动】活动活动活动活动活动活动</li>
-<li>【活动】活动活动活动活动</li>
-</ul>
-<div class="more">
-<a href="more" class="more">更多</a>
-</div>
-</div>
-<div id="xwzx">
-<a class="titile">新闻中心</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img src="images/hr.png" />
-<ul>
-<li>【活动】活动活动活动活动活动</li>
-“弄权弄势弄出冤家故事，赏花赏月赏一曲性灵小事”这里没有重庆故事，没有菲律宾故事，
-</ul>
-<div class="more">
-<a href="more" class="more">更多</a>
-</div>
-</div>
-<div id="xshhd">
-<a class="titile">学生会活动</a>&nbsp;<img src="images/hr.png" />
-<ul>
-<li>【活动】活动活动活动活动活动</li>
-<li>【活动】活动活动活动活动</li>
-<li>【活动】活动活动活动活动活动活动</li>
-<li>【活动】活动活动活动活动</li>
-</ul>
-<div class="more">
-<a href="more" class="more">更多</a>
-</div>
-</div>
+		<div class="pav">
+		</div>
+		<div id="kjfw">
+			<div class="button-center-ref">
+				<div class="button-center"></div>
+			</div>
+			<div class="button-rt"></div>
+			<div class="button-rb"></div>
+			<div class="button-lt"></div>
+			<div class="button-lb"></div>
+		</div>
+		<div id="tzygs">
+			<div class="title">
+				<a>通知与告示</a>
+				<div class="hr"></div>
+				<div class="clearer"></div>
+			</div>
+			<ul>
+			</ul>
+			<div class="more">
+				<a href="/view/index.php?type=announce">更多</a>
+			</div>
+			<div class="clearer"></div>
+		</div>
+		<div id="sthd">
+			<div class="title">
+				<a>社团活动</a>
+				<div class="hr"></div>
+				<div class="clearer"></div>
+			</div>
+			<ul>
+			</ul>
+			<div class="more">
+				<a href="/view/index.php?type=activity&host=%22asso%22">更多</a>
+			</div>
+			<div class="clearer"></div>
+		</div>
+		<div id="xwzx">
+			<div class="title">
+				<a>新闻中心</a>
+				<div class="hr"></div>
+				<div class="clearer"></div>
+			</div>
+			<ul>
+			</ul>
+			<div class="more">
+				<a href="/view/index.php?type=news">更多</a>
+			</div>
+			<div class="clearer"></div>
+		</div>
+		<div id="xshhd">
+			<div class="title">
+				<a>学生会活动</a>
+				<div class="hr"></div>
+				<div class="clearer"></div>
+			</div>
+			<ul>
+			</ul>
+			<div class="more">
+				<a href="/view/index.php?type=activity&host=%22su%22">更多</a>
+			</div>
+			<div class="clearer"></div>
+		</div>
+		<div class="clearer"></div>
 	</body>
 </html>

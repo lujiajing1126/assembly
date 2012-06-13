@@ -1,0 +1,35 @@
+div.clearer {
+	clear: both;
+}
+
+
+
+div.post_common_edit {
+	text-align: right;
+}
+
+
+
+div.post_news_title {
+	font-size: 32px;
+	text-align: center;
+}
+
+div.post_news_keyword {
+	font-size: 16px;
+	float: right;
+}
+
+div.post_news_abstract {
+	font-size: 14px;
+	border-color: #c0c0c0;
+	border-style: solid none solid none;
+	border-width: 1px;
+	width: 90%;
+	padding: 0.5em;
+	margin: auto auto 3em auto;
+}
+
+div.post_news_text {
+	font-size: 16px;
+}

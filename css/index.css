@@ -1,69 +1,173 @@
-div#iFlash {
-float:left;
-height:250px;
-width:400px;
-background-color:blue;
-margin-left:40px;
-margin-top:30px;
+.clearer {
+	clear: both;
+}
+div.pav,
+div#kjfw {
+	margin-top: 10px;
+	margin-bottom: 30px;
+}
+div.pav {
+	height: 250px;
+	width: 550px;
 }
 div#kjfw {
-float:right;
-height:250px;
-width:400px;
-background-color:blue;
-margin-right:40px;
-margin-top:30px;
+	height: 250px;
+	width: 250px;
+	position: relative;
 }
-div#tzygs
-{
-float:left;
-height:250px;
-width:400px;
-margin-left:40px;
-margin-top:30px;
+div.button-center-ref {
+	top: 50%;
+	left: 50%;
+	position: absolute;
 }
-div#sthd
-{
-float:right;
-height:250px;
-width:400px;
-margin-right:40px;
-margin-top:30px;
+div.button-center {
+	top: -84px;
+	left: -84px;
+	width: 166px;
+	height: 166px;
+	position: absolute;
+	background-image: url('/images/index/button-1V11.png');
 }
-div#xwzx
-{
-float:left;
-height:250px;
-width:400px;
-margin-left:40px;
-margin-top:30px;
+div.button-center-normal {
 }
-div#xshhd
-{
-float:right;
-height:250px;
-width:400px;
-margin-right:40px;
-margin-top:30px;
+div.button-center-hover {
+	background-image: url('/images/index/button-1V12.png');
 }
-a.titile {
-font-family:幼圆;
-font-size:31;
-font-weight:bold;
+div.button-center-push {
+	background-image: url('/images/index/button-1V13.png');
 }
-ul
-{
-font-family:幼圆;
-font-weight:bold;
+div.button-rt,
+div.button-rb,
+div.button-lt,
+div.button-lb {
+	position: absolute;
+	width: 66px;
+	height: 66px;
+}
+div.button-rt,
+div.button-rb {
+	right: 0px;
+}
+div.button-lt,
+div.button-lb {
+	left: 0px;
+}
+div.button-lt,
+div.button-rt {
+	top: 0px;
+}
+div.button-lb,
+div.button-rb {
+	bottom: 0px;
+}
+div.button-rt {
+	background-image: url('/images/index/button-2V1.11.png');
+}
+div.button-rt-normal {
+}
+div.button-rt-hover {
+	background-image: url('/images/index/button-2V1.12.png');
+}
+div.button-rt-push {
+	background-image: url('/images/index/button-2V1.13.png');
+}
+div.button-rb {
+	background-image: url('/images/index/button-2V1.41.png');
+}
+div.button-rb-normal {
+}
+div.button-rb-hover {
+	background-image: url('/images/index/button-2V1.42.png');
+}
+div.button-rb-push {
+	background-image: url('/images/index/button-2V1.43.png');
+}
+div.button-lt {
+	background-image: url('/images/index/button-2V1.31.png');
+}
+div.button-lt-normal {
+}
+div.button-lt-hover {
+	background-image: url('/images/index/button-2V1.32.png');
+}
+div.button-lt-push {
+	background-image: url('/images/index/button-2V1.33.png');
+}
+div.button-lb {
+	background-image: url('/images/index/button-2V1.21.png');
+}
+div.button-lb-normal {
+}
+div.button-lb-hover {
+	background-image: url('/images/index/button-2V1.22.png');
+}
+div.button-lb-push {
+	background-image: url('/images/index/button-2V1.23.png');
+}
+div#tzygs,
+div#sthd,
+div#xwzx,
+div#xshhd {
+	height:250px;
+	width:400px;
+}
+div.pav,
+div#tzygs,
+div#xwzx {
+	float: left;
+}
+div#kjfw,
+div#sthd,
+div#xshhd {
+	float: right;
+}
+div.title {
+	height: 36px;
+	position: relative;
+}
+div.title a {
+	font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+	font-size: 31px;
+	line-height: 36px;
+}
+div.title .hr {
+	background-image: url('/images/hr.png');
+	background-position: 0px 8px;
+	background-repeat: no-repeat;
+	width: 222px;
+	height: 36px;
+	position: absolute;
+	top: 0px;
+	right: 0px;
+}
+div#tzygs ul,
+div#sthd ul,
+div#xwzx ul,
+div#xshhd ul,
+div#tzygs ul a,
+div#sthd ul a,
+div#xwzx ul a,
+div#xshhd ul a {
+	font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+	font-size: 16px;
+	line-height: 20px;
+	text-decoration: none;
+	color: black;
+}
+div#tzygs ul a:hover,
+div#sthd ul a:hover,
+div#xwzx ul a:hover,
+div#xshhd ul a:hover {
+	text-decoration: underline;
+	color: #2a0102;
 }
 div.more {
-float:right;
+	float:right;
 }
-a.more
-{
-color:red;
-font-weight:bold;
-font-family:幼圆;
-text-decoration:none;
-font-size:20;
+div.more a {
+	color:red;
+	font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
+	font-size: 16px;
+	line-height: 20px;
+	text-decoration: none;
 }

@@ -1,4 +1,6 @@
 var ajaxAddr = "view_ajax.php";
+var announcementServiceAjaxAddr = "/system/announcement_service";
+
 function Path (structure, path) {
   var
     TBCLASS = "type_button",
@@ -352,7 +354,9 @@ function Host(hostList, select) {
   };
 };
 
-var lastRefresher = null;
+var lastRefresher = null,
+ queryFrom = 0,
+ querySize = 20;
 function refreshResult(force) {
   var
     query = {hosts: []},
@@ -372,6 +376,8 @@ function refreshResult(force) {
   for (var item in host.list)
     if (host.list[item].selected)
       query.hosts.push(item);
+  query.from = queryFrom;
+  query.size = querySize;
   if (lastRefresher != null)
     clearTimeout(lastRefresher);
   if (force == true)
@@ -379,7 +385,7 @@ function refreshResult(force) {
   lastRefresher = setTimeout(
     function () {
       $.ajax({
-        url: ajaxAddr,
+        url: announcementServiceAjaxAddr,
         dataType: "json",
         cache: false,
         data: {
@@ -401,7 +407,10 @@ function refreshResult(force) {
                   .append(item.title))
               .append(
                 $("<div/>", {"class": RCCLASS})
-                  .append(item.content))
+                  .append(item.abs))
+              .click(function () {
+                  window.open("/e" + item.id);
+                })
               .appendTo(tl);
           }
           host.moveCustomButton();

@@ -26,6 +26,11 @@ var
 	case "activity":
 	default:
 		?>["活动", null]<?php
+		break;
+	case "announce":
+	default:
+		?>["公告", null]<?php
+		break;
 	}
 ?>
     ),
@@ -36,7 +41,7 @@ var
       "asso": ["社团", true],
       "asso/test": ["测试社团", false]
     },
-    ["#ALL#"]),
+    [<?php echo isset($_GET["host"])? $_GET["host"] : '"#ALL#"'; ?>]),
   range = [0, 10],
   pageSize = 5;
 
@@ -48,7 +53,8 @@ var
       <div id="lead"></div>
       <div id="content">
         <div id="type_box">
-          <div id="prompt_type">类型</div>
+          <div id="prompt_type">类型<div class="hr"></div></div>
+          <div class="clearer"></div>
           <ol id="type"></ol>
           <div id="subtype_boxes"></div>
           <div id="selector_box">
@@ -63,7 +69,7 @@ var
                         <label for="_event_timerange_7">一周</label>
                       <input type="radio" name="timerange" id="_event_timerange__special" value="__special__"/>
                         <label for="_event_timerange__special">
-                          <input type="text"/>
+                          <input type="text"/> 天内
                         </label>
                     </li>
                     <li>时间：
@@ -83,11 +89,10 @@ var
               <div id="selector_event_lecture" class="special_styled result_related">
                 <form>
                   <ul>
-                    <li>讲授人：
-                      <input type="checkbox" name="teacher" id="_event_teacher_a" checked="checked" value="a"/><label for="_event_teacher_a">小A</label>
-                      <input type="checkbox" name="teacher" id="_event_teacher_b" checked="checked" value="b"/><label for="_event_teacher_b">小B</label>
-                      <input type="checkbox" name="teacher" id="_event_teacher_c" value="c"/><label for="_event_teacher_c">小C</label>
-                      <input type="checkbox" name="teacher" id="_event_teacher__special" value="__special__"/>
+                    <li>系列：
+                      <input type="checkbox" name="series" id="_event_teacher_a" checked="checked" value="名企讲堂"/><label for="_event_teacher_a">名企讲堂</label>
+                      <input type="checkbox" name="series" id="_event_teacher_b" checked="checked" value="星空讲堂"/><label for="_event_teacher_b">星空讲堂</label>
+                      <input type="checkbox" name="series" id="_event_teacher__special" value="__special__"/>
                         <label for="_event_teacher__special">
                           <input type="text"/>
                         </label>
@@ -98,8 +103,10 @@ var
               </div>
             </div>
           </div>
+          <div class="clearer"></div>
           <div id="host_box">
-            <div id="prompt_host">主办方</div>
+            <div id="prompt_host">主办方<div class="hr"></div></div>
+            <div class="clearer"></div>
               <ol id="host"></ol>
           </div>
           <div id="result_box">
@@ -108,6 +115,7 @@ var
               <div id="result_list_left"></div>
               <div id="result_list_right"></div>
             </div>
+            <div class="clearer"/>
           </div>
         </div>
       </div>
