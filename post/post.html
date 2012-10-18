@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<title>复旦大学学生会</title>
+		<link type="text/css" href="/jquery/css/default/jquery-ui.css" rel="Stylesheet" />
+		<script type="text/javascript" src="/jquery/js/jquery.js"></script>
+		<script type="text/javascript" src="/jquery/js/jquery-ui.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/framework.css" />
+		<script type="text/javascript" src="/js/framework.js"></script>
+
+		<script type="text/javascript" src="/js/json2.js"></script>
+
+		<script type="text/javascript" src="/js/tiny_mce/jquery.tinymce.js"></script>
+
+		<link rel="stylesheet" type="text/css" href="post.css" />
+		<script type="text/javascript" src="post.js"></script>
+	</head>
+	<body>
+		<div id="template">
+			模板：
+			<select id="template_list"><select>
+			<button id="template_add">添加</button>
+			<span id="template_description"></span>
+		</div>
+		<div id="storage">
+			存储：
+			<button id="storage_save">暂存</button>
+			<button id="storage_load">读取</button>
+			<button id="storage_clear">清除</button>
+		</div>
+		<div id="util">
+			工具：
+			<select id="util_sign_select"></select>
+			<button id="util_sign">签名</button>
+			<button id="util_clear">清空</button>
+			<span id="util_edit">
+				<span id="util_edit_info"></span>
+				<button id="util_edit_drop">删除</button>
+			</span>
+		</div>
+		<div id="post">
+			<ul class="post-data">
+			</ul>
+			<ul class="post-add">
+				<li>添加</li>
+				<li class="post-add-button" id="post-add-text">文章</li>
+				<li class="post-add-button" id="post-add-keyword">关键字</li>
+				<li class="post-add-button" id="post-add-number">数字</li>
+				<li class="post-add-button" id="post-add-datetime">日期时间</li>
+			</ul>
+			<div class="clearer"></div>
+		</div>
+		<div>
+			<button id="do_post">发布</button>
+		</div>
+		<div class="frame_escape html_editor">
+			<form onsubmit="return false;">
+				<textarea class="html_editor_real" id="html_editor"></textarea>
+			</form>
+		</div>
+	</body>
+</html>

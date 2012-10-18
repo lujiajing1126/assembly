@@ -58,7 +58,7 @@ function loadList(n) {
 
 var buttonMap = {
 	"button-center": "/index.php",
-	"button-rt": "/system/post",
+	"button-rt": "/post/post.html",
 	"button-rb": "/index.php",
 	"button-lt": "/index.php",
 	"button-lb": "/wiki/su/assn",

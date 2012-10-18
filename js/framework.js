@@ -48,7 +48,7 @@ function framePrepareFrameNav() {
 		});
 }
 
-function framePrepareframeBot() {
+function framePrepareFrameBot() {
 	$.ajax({
 		url: "/index_bottom.php",
 		dataType: "json",
@@ -88,9 +88,9 @@ function frameEnclose() {
 	var body = $("body");
 	if (!body.find("div.frame_prevent").length) {
 		framePrepareFrameNav();
-		framePrepareframeBot();
+		framePrepareFrameBot();
 		framePreparePrompt();
-		body.find("> *").appendTo(frameCore);
+		frameCore.append(body.contents().filter(":not(.frame_escape)"));
 		body
 			.addClass("frame")
 			.append(frameNavRef)
