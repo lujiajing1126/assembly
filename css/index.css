@@ -108,7 +108,7 @@ div#tzygs,
 div#sthd,
 div#xwzx,
 div#xshhd {
-	height:250px;
+	min-height: 250px;
 	width:400px;
 }
 div.pav,

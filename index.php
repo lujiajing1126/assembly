@@ -24,6 +24,7 @@
 			<div class="button-lt"></div>
 			<div class="button-lb"></div>
 		</div>
+		<div class="clearer"></div>
 		<div id="tzygs">
 			<div class="title">
 				<a>通知与告示</a>
@@ -50,6 +51,7 @@
 			</div>
 			<div class="clearer"></div>
 		</div>
+		<div class="clearer"></div>
 		<div id="xwzx">
 			<div class="title">
 				<a>新闻中心</a>
