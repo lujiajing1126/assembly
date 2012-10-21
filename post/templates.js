@@ -31,11 +31,11 @@
                        {"desc": "keyword",
                         "name": "主办方",
                         "data": "主办方代码"}]},
- "announce": {"name": "公告",
+ "announce": {"name": "告示",
               "description": "",
               "data": [{"desc": "keyword",
                         "name": "类型",
-                        "data": "公告"},
+                        "data": "告示"},
                        {"desc": "keyword",
                         "name": "标题",
-                        "data": "公告标题填于此"}]}}
+                        "data": "告示标题填于此"}]}}
