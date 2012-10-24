@@ -7,6 +7,7 @@
     <script type="text/javascript" src="/jquery/js/jquery-ui.js"></script>
     <link rel="stylesheet" type="text/css" href="/css/framework.css" />
     <script type="text/javascript" src="/js/framework.js"></script>
+    <script type="text/javascript" src="/js/json2.js"></script>
 
     <link type="text/css" href="view.css" rel="Stylesheet" />
     <script type="text/javascript" src="view.js"></script>
@@ -59,7 +60,7 @@ var
           <div id="subtype_boxes"></div>
           <div id="selector_box">
             <div id="selector_box_upper">
-              <div id="selector_event" class="special_styled result_related">
+              <div id="selector_event" class="special_styled result_related" style="display:none;">
                 <form>
                   <ul>
                     <li>时间范围：
@@ -86,7 +87,7 @@ var
               </div>
             </div>
             <div id="selector_box_lower">
-              <div id="selector_event_lecture" class="special_styled result_related">
+              <div id="selector_event_lecture" class="special_styled result_related" style="display:none;">
                 <form>
                   <ul>
                     <li>系列：
@@ -112,8 +113,6 @@ var
           <div id="result_box">
             <div id="result_pref"></div>
             <div id="result">
-              <div id="result_list_left"></div>
-              <div id="result_list_right"></div>
             </div>
             <div class="clearer"/>
           </div>

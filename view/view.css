@@ -122,17 +122,15 @@
 #result {
 }
 #result>div {
-  margin: 0px;
-  padding: 0px;
   float: left;
-}
-#result_list_left, #result_list_right {
-  width: 50%;
 }
 #result div.result_block {
   padding: 10px;
   margin: 5px;
   background-color: #EEEEEE;
+  width: 370px;
+  height: 108px;
+  overflow-y: hidden;
 }
 #result div.result_title {
   font-family: "Trebuchet MS", "Helvetica", "Arial", "Verdana", "sans-serif";
@@ -144,6 +142,7 @@
 }
 #result div.result_content {
   font-size: 16px;
+  overflow-y: hidden;
 }
 #selector_box_upper, #selector_box_upper div, #selector_box_upper ul,
 #selector_box_lower, #selector_box_lower div, #selector_box_lower ul {

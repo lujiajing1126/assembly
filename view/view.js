@@ -390,28 +390,25 @@ function refreshResult(force) {
         cache: false,
         data: {
           routine: "get_result",
-          query: query
+          query: JSON.stringify(query)
           },
         success: function (data) {
-          $("#result_list_left *, #result_list_right *").remove();
+          var result = $("#result");
+          result.contents().remove();
           for(var i in data) {
-            var tl, item = data[i];
-            if (i < pageSize / 2) {
-              tl = $("#result_list_left");
-            } else {
-              tl = $("#result_list_right");
-            }
-            $("<div/>", {"class": RBCLASS})
-              .append(
-                $("<div/>", {"class": RTCLASS})
-                  .append(item.title))
-              .append(
-                $("<div/>", {"class": RCCLASS})
-                  .append(item.abs))
-              .click(function () {
-                  window.open("/e" + item.id);
-                })
-              .appendTo(tl);
+            (function (item) {
+              $("<div/>", {"class": RBCLASS})
+                .append(
+                  $("<div/>", {"class": RTCLASS})
+                    .append(item.title.length > 38? item.title.substr(0, 35) + "……" : item.title))
+                .append(
+                  $("<div/>", {"class": RCCLASS})
+                    .append(item.abs.length > 58? item.abs.substr(0, 55) + "……" : item.abs))
+                .click(function () {
+                    window.open("/e" + item.id);
+                  })
+                .appendTo(result);
+            }) (data[i]);
           }
           host.moveCustomButton();
         }
