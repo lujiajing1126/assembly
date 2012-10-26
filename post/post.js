@@ -168,6 +168,10 @@ function newDatetimeItem(itemName, itemValue) {
 				}
 			})
 		.focusout(function () {
+				if (!/^(\d\d?:\d\d:\d\d)?$/.test($(this).val())) {
+					alert("时间格式错误：请以“hh:mm:ss”格式填写时间");
+					$(this).val("");
+				}
 				if ($(this).val() === "") {
 					$(this).data("present", false);
 					$(this).addClass("post-data-item-value-time-unset")
@@ -522,11 +526,13 @@ function setupUtil() {
 	        data: {action:     'util',
 		       sub_action: 'get_signatures'},
 		success: function (data, textStatus, jqXHR) {
-				for (var orgId in data) {
-					$("#util_sign_select").append($('<option/>', {value: orgId}).append(data[orgId]));
+				if (!$.isEmptyObject(data)) {
+					for (var orgId in data) {
+						$("#util_sign_select").append($('<option/>', {value: orgId}).append(data[orgId]));
+					}
+					$("#util_sign").show();
+					$("#util_sign_select").show();
 				}
-				$("#util_sign").show();
-				$("#util_sign_select").show();
 			}});
 	$("#util_sign").click(function () {
 			var orgId = $("#util_sign_select").val();
