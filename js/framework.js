@@ -87,14 +87,16 @@ function frameBarLayoutLV() {
 function frameEnclose() {
 	var body = $("body");
 	if (!body.find("div.frame_prevent").length) {
+		var escaped = $(".frame_escape").detach();
 		framePrepareFrameNav();
 		framePrepareFrameBot();
 		framePreparePrompt();
-		frameCore.append(body.contents().filter(":not(.frame_escape)"));
+		frameCore.append(body.contents());
 		body
 			.addClass("frame")
 			.append(frameNavRef)
-			.append(frame);
+			.append(frame)
+			.append(escaped);
 		frameMainbox.bind("refresh_bar_position", function () {
 				frameNavRef.offset(frameMainbox.offset());
 				frameBotRef.offset(function () {
