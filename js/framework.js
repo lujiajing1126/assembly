@@ -65,9 +65,12 @@ function framePrepareFrameBot() {
 }
 
 function framePreparePrompt() {
+	var data = {};
+	data.origin = document.location.href;
 	$.ajax({
 		url: "/system/user_info_prompt",
 		dataType: "html",
+		data: data,
 		cache: false,
 		success: function (data) {
 				framePrompt.append(data);
