@@ -333,8 +333,8 @@ function Host(hostList, select) {
       mandatory: hostMandatory,
       remover: rm
     };
-    return hostButton;
     this.moveCustomButton();
+    return hostButton;
   };
   this.createHostButton = function (hostId, hostName, hostMandatory) {
     return this.createHostButtonContent($("<li/>", {"class": HBCLASS}), hostId, hostName, hostMandatory);
