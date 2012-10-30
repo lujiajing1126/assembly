@@ -28,28 +28,30 @@
 			dataType: "json",
 			cache: false,
 			success: function (data) {
-					for (var item = 0; item != data.top.link.length; ++item) {
+					var nav = data['top'];
+					for (var item = 0; item != nav['link'].length; ++item) {
 						var curr;
 						frameNavOl
 							.append(
 								curr = $("<li/>")
-									.data("openlink", data.top.link[item].url)
+									.data("openlink", nav['link'][item]['url'])
 									.click(function () {
-											window.location = $(this).data("openlink")
+										window.location = $(this).data("openlink")
 										})
-									.append($("<a/>", {href: data.top.link[item].url})
-											.append(data.top.link[item].text)));
-						if (data.top.link[item].url == window.location.pathname + window.location.search)
+									.append($("<a/>", {href: nav['link'][item]['url']})
+									.append(nav['link'][item]['text'])));
+						if (nav['link'][item]['url'] == window.location.pathname + window.location.search)
 							curr.addClass("frame_nav_checked");
 					}
-					for (item in data.top.decorator) {
-						frameNavRef.append($(data.top.decorator[item]));
+					for (item in nav['decorator']) {
+						frameNavRef.append($(nav['decorator'][item]));
 					}
-					for (var item = 0; item != data.bottom.content.length; ++item) {
-						frameBot.append($(data.bottom.content[item]));
+					var bottom = data['bottom'];
+					for (var item = 0; item != bottom['content'].length; ++item) {
+						frameBot.append($(bottom['content'][item]));
 					}
-					for (var item = 0; item != data.bottom.decorator.length; ++item) {
-						frameBotRef.append($(data.bottom.decorator[item]));
+					for (var item = 0; item != bottom['decorator'].length; ++item) {
+						frameBotRef.append($(bottom['decorator'][item]));
 					}
 				}
 			});
@@ -113,8 +115,8 @@
 		}
 	}
 
-	frameParallel(framePrepareFrameNavAndBot());
-	frameParallel(framePreparePrompt());
+	frameParallel(framePrepareFrameNavAndBot);
+	frameParallel(framePreparePrompt);
 
 	$(function () {
 			frameEnclose();
