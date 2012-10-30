@@ -333,7 +333,6 @@ function Host(hostList, select) {
       mandatory: hostMandatory,
       remover: rm
     };
-    this.moveCustomButton();
     return hostButton;
   };
   this.createHostButton = function (hostId, hostName, hostMandatory) {
