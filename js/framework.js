@@ -21,44 +21,34 @@ var
 	framePrompt = frameNewDivOf("frame_prompt")
 		.appendTo(frame);
 
-function framePrepareFrameNav() {
+function framePrepareFrameNavAndBot() {
 	$.ajax({
-		url: "/index_bar.php",
+		url: "/frameworkdata.php",
 		dataType: "json",
 		cache: false,
 		success: function (data) {
-				for (var item = 0; item != data.link.length; ++item) {
+				for (var item = 0; item != data.top.link.length; ++item) {
 					var curr;
 					frameNavOl
 						.append(
 							curr = $("<li/>")
-								.data("openlink", data.link[item].url)
+								.data("openlink", data.top.link[item].url)
 								.click(function () {
 										window.location = $(this).data("openlink")
 									})
-								.append($("<a/>", {href: data.link[item].url})
-										.append(data.link[item].text)));
-					if (data.link[item].url == window.location.pathname + window.location.search)
+								.append($("<a/>", {href: data.top.link[item].url})
+										.append(data.top.link[item].text)));
+					if (data.top.link[item].url == window.location.pathname + window.location.search)
 						curr.addClass("frame_nav_checked");
 				}
-				for (item in data.decorator) {
-					frameNavRef.append($(data.decorator[item]));
+				for (item in data.top.decorator) {
+					frameNavRef.append($(data.top.decorator[item]));
 				}
-			}
-		});
-}
-
-function framePrepareFrameBot() {
-	$.ajax({
-		url: "/index_bottom.php",
-		dataType: "json",
-		cache: false,
-		success: function (data) {
-				for (var item = 0; item != data.content.length; ++item) {
-					frameBot.append($(data.content[item]));
+				for (var item = 0; item != data.bottom.content.length; ++item) {
+					frameBot.append($(data.bottom.content[item]));
 				}
-				for (var item = 0; item != data.decorator.length; ++item) {
-					frameBotRef.append($(data.decorator[item]));
+				for (var item = 0; item != data.bottom.decorator.length; ++item) {
+					frameBotRef.append($(data.bottom.decorator[item]));
 				}
 			}
 		});
@@ -78,6 +68,10 @@ function framePreparePrompt() {
 		});
 }
 
+function frameParallel(code) {
+	setTimeout(code, 0);
+}
+
 function frameBarLayout() {
 	frameMainbox.trigger("refresh_bar_position");
 }
@@ -91,10 +85,9 @@ function frameEnclose() {
 	var body = $("body");
 	if (!body.find("div.frame_prevent").length) {
 		var escaped = $(".frame_escape").detach();
-		framePrepareFrameNav();
-		framePrepareFrameBot();
-		framePreparePrompt();
-		frameCore.append(body.contents());
+		frameCore
+			.append(body.contents())
+			.append($("<div/>", {"class": "frame_clearer"}));
 		body
 			.addClass("frame")
 			.append(frameNavRef)
@@ -118,6 +111,9 @@ function frameEnclose() {
 			});
 	}
 }
+
+frameParallel(framePrepareFrameNavAndBot());
+frameParallel(framePreparePrompt());
 
 $(function () {
 		frameEnclose();
