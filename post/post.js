@@ -45,6 +45,7 @@ $.valHooks.inputable = {
 			return $(elem).find("> :text").val(value).trigger("update-width-needed");
 		}};
 
+(function () {
 var html_editor_save_callback = function (elem, html, body) {
 }
 
@@ -271,7 +272,7 @@ function newTextItem(itemName, itemValue, html) {
 			$("#html_editor").val(value.val());
 			html_editor_save_callback = function (elem, html, body) {
 					value.val(html);
-					html_editor_save_callback = function (elem, html, body) {console.log(arguments);};
+					html_editor_save_callback = function (elem, html, body) {};
 				}
 		});
 	if (html) {
@@ -381,7 +382,7 @@ function prepareTemplates() {
 		});
 }
 
-function html_editor_save_callback_wrapper() {
+html_editor_save_callback_wrapper = function () {
 	html_editor_save_callback.apply(this, arguments);
 	$(".html_editor").hide();
 	return true;
@@ -558,3 +559,4 @@ $(document).ready(function () {
 		setupSaveButton();
 		setupUtil();
 	});
+})();
