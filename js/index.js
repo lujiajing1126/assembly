@@ -61,7 +61,7 @@ var buttonMap = {
 	"button-rt": "/post/post.html",
 	"button-rb": "/index.php",
 	"button-lt": "/index.php",
-	"button-lb": "/wiki/su/assn",
+	"button-lb": "/wiki/su/assn"
 };
 
 function loadButton(b) {
