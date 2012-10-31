@@ -1,4 +1,0 @@
-jsminify --js js/framework.js | sponge js/framework.js
-jsminify --js js/index.js | sponge js/index.js
-jsminify --js post/post.js | sponge post/post.js
-jsminify --js view/view.js | sponge view/view.js

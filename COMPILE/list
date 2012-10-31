@@ -1,0 +1,5 @@
+google-closure-compiler --js js/framework.js | sponge js/framework.js
+google-closure-compiler --js js/index.js | sponge js/index.js
+google-closure-compiler --compilation_level ADVANCED_OPTIMIZATIONS --js js/json2.js | sponge js/json2.js
+google-closure-compiler --js post/post.js | sponge post/post.js
+google-closure-compiler --js view/view.js | sponge view/view.js
