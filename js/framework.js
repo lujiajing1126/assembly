@@ -86,7 +86,8 @@
 
 	function frameEnclose() {
 		var body = $("body");
-		if (!body.find("div.frame_prevent").length) {
+		if (!(body.hasClass("with_frame") || body.find("div.frame_prevent").length)) {
+			body.addClass("with_frame");
 			var escaped = $(".frame_escape").detach();
 			frameCore
 				.append(body.contents())
