@@ -1,4 +1,4 @@
-H /SERVER_CONFIGURE/
 H /COMPILE/
-H Makefile
-H rsync-filter
+H /SERVER_CONFIGURE
+H /Makefile
+H /rsync-filter
