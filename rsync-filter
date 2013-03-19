@@ -3,4 +3,5 @@ H /SERVER_CONFIGURE
 H /Makefile
 H /rsync-filter
 H .*
-P /wiki/
+- /wiki/
+- /misc/
