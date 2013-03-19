@@ -14,11 +14,8 @@
     <title>查看 - 复旦大学学生会</title>
 
     <script type="text/javascript">
-var structure = <?php include("structure.php"); ?>;
-
-var
-  path = new Path(
-      structure,
+setup(
+<?php include("structure.php"); ?>,
 <?php
 	switch ($_GET["type"]) {
 	case "news":
@@ -33,16 +30,17 @@ var
 		?>["公告", null]<?php
 		break;
 	}
-?>
-    ),
-  host = new Host(
-    {
-      "su": ["学生会", true],
-      "college": ["学院", true],
-      "asso": ["社团", true],
-      "asso/test": ["测试社团", false]
-    },
-    [<?php echo isset($_GET["host"])? $_GET["host"] : '"#ALL#"'; ?>]),
+?>,
+{
+  "su": ["学生会", true],
+  "college": ["学院", true],
+  "asso": ["社团", true],
+  "asso/test": ["测试社团", false]
+},
+[<?php echo isset($_GET["host"])? $_GET["host"] : '"#ALL#"'; ?>]
+    );
+
+var
   range = [0, 10],
   pageSize = 5;
 

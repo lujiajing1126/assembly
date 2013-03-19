@@ -67,10 +67,12 @@ server {
 		}
 	}
 
-	location ^~ /git-repo/ {
-		proxy_pass http://su-dell-debian2;
-		proxy_set_header Host $host;
-	}
+        location ^~ /pdata/ {
+                rewrite ^/pdata(/.*) $1 break;
+                proxy_pass http://su-dell-debian2;
+                proxy_set_header Host publicdata.su;
+		proxy_redirect http://publicdata.su/ http://$host/pdata/;
+        }
 
 	location / {
 		try_files $uri $uri/ =404;
