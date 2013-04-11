@@ -79,7 +79,7 @@ server {
 	location ^~ /dav/ {
                 proxy_pass http://localhost:8000;
                 proxy_set_header Host dav.su.fudan.edu.cn;
-		proxy_redirect http://dav.su.fudan.edu.cn:8000/ http://$host/;
+		proxy_redirect http://dav.su.fudan.edu.cn/ http://$host/;
 		client_max_body_size 0;
 	}
 
