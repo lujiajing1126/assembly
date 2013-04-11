@@ -73,12 +73,14 @@ server {
                 rewrite ^/pdata(/.*) $1 break;
                 proxy_pass http://su-dell-debian2;
                 proxy_set_header Host publicdata.su;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 		proxy_redirect http://publicdata.su/ http://$host/pdata/;
         }
 
 	location ^~ /dav/ {
                 proxy_pass http://localhost:8000;
                 proxy_set_header Host dav.su.fudan.edu.cn;
+		proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
 		proxy_redirect http://dav.su.fudan.edu.cn/ http://$host/;
 		client_max_body_size 0;
 	}
