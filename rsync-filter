@@ -5,3 +5,4 @@ H /rsync-filter
 H .*
 - /wiki/
 - /misc/
+- /data/
