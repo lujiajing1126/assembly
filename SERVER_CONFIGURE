@@ -55,7 +55,7 @@ server {
 			include fastcgi_params;
 		}
 
-		location ~ ^/wiki/(lib)$ {
+		location ~ ^/wiki/(lib)/ {
 			break;
 		}
 
