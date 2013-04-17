@@ -55,10 +55,6 @@ server {
 			include fastcgi_params;
 		}
 
-		location ~ ^/wiki/(data/.*|lib/.*|bin/.*|inc/.*)$ {
-			break;
-		}
-
 		location ~ ^/wiki/ {
 			rewrite ^/wiki/_media/(.*)		/wiki/lib/exe/fetch.php?media=$1	last;
 			rewrite ^/wiki/_detail/(.*)		/wiki/lib/exe/detail.php?media=$1	last;
