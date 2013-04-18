@@ -1,4 +1,4 @@
-(function () {
+(function ($) {
 	function frameNewDivOf(c) {
 		return $("<div/>", {"class": c});
 	}
@@ -122,4 +122,4 @@
 	$(function () {
 			frameEnclose();
 		})
-})();
+})(window.jQuery);
