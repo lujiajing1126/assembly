@@ -68,6 +68,10 @@ server {
 		}
 	}
 
+        location ^~ /news/ {
+		rewrite ^(.*)$ /wiki$1 last;
+	}
+
         location ^~ /pdata/ {
                 rewrite ^/pdata(/.*) $1 break;
                 proxy_pass http://su-dell-debian2;
