@@ -12,6 +12,11 @@ abstract class OptionElement extends Element {
 		parent::__construct($label, $name, $properties);
 	}
 
+    protected function setLimited($limited) {
+        if (!empty($limited))
+                $this->validation[] = new \PFBC\Validation\Options(array_keys($this->options));
+    }
+
 	protected function getOptionValue($value) {
         $position = strpos($value, ":pfbc");
         if($position !== false) {

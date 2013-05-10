@@ -7,13 +7,13 @@ class BootstrapDateTime extends Textbox {
     protected $language, $maskInput, $pickDate, $pickTime, $pick12HourFormat, $pickSeconds, $startDate, $endDate;
 
     public function getCSSFiles() {
-        if(!in_array("bootstrap-datetimepicker", $this->_form->getPrevent))
-            return array($this->_form->getPrefix . "bootstrap/css/bootstrap-datetimepicker.min.css");
+        if(!in_array("bootstrap-datetimepicker", $this->_form->getPrevent()))
+            return array("/bootstrap/css/bootstrap-datetimepicker.min.css");
     }
 
     public function getJSFiles() {
-        if(!in_array("bootstrap-datetimepicker", $this->_form->getPrevent))
-            return array($this->_form->getPrefix . "bootstrap/js/bootstrap-datetimepicker.min.js");
+        if(!in_array("bootstrap-datetimepicker", $this->_form->getPrevent()))
+            return array("/bootstrap/js/bootstrap-datetimepicker.min.js");
     }
 
     public function jQueryOptions() {
@@ -32,4 +32,10 @@ class BootstrapDateTime extends Textbox {
         parent::jQueryDocumentReady();
         echo 'jQuery("#', $this->_attributes["id"], '").parent().datetimepicker(', $this->jQueryOptions(), ');';
     }
+
+	public function render() {
+		$this->validation[] = new \PFBC\Validation\DateWithFormat($this->_attributes["data-format"]);
+		parent::render();
+	}
 }
+
