@@ -1,3 +1,14 @@
+<?php
+$activity_db = new PDO($DSN['activity']);
+$assnact_src = activity_query($activity_db, array('host' => 'assn', 'pagesize' => 5, 'offset' => 0));
+$suact_src = activity_query($activity_db, array('host' => 'su', 'pagesize' => 5, 'offset' => 0));
+unset($activity_db);
+
+$announcement_db = new PDO($DSN['announcement']);
+$post_src = announcement_query($announcement_db, array('category' => '公告', 'pagesize' => 5, 'offset' => 0));
+$news_src = announcement_query($announcement_db, array('category' => '新闻', 'pagesize' => 5, 'offset' => 0));
+unset($announcement_db);
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 	<head>
@@ -13,8 +24,7 @@
 		<script type="text/javascript" src="/js/index.js"></script>
 	</head>
 	<body>
-		<div class="pav">
-		</div>
+		<div class="pav" style="background-image: url(/campstar-2013.jpg); cursor: pointer" onclick="javascript: window.location = '/misc/campstar-2013/'"></div>
 		<div id="kjfw">
 			<div class="button-center-ref">
 				<div class="button-center"></div>
@@ -32,9 +42,10 @@
 				<div class="clearer"></div>
 			</div>
 			<ul>
+<?php foreach($post_src as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
 			</ul>
 			<div class="more">
-				<a href="/view/index.php?type=announce">更多</a>
+				<a href="/announcement.php?category=%E5%85%AC%E5%91%8A">更多</a>
 			</div>
 			<div class="clearer"></div>
 		</div>
@@ -45,9 +56,10 @@
 				<div class="clearer"></div>
 			</div>
 			<ul>
+<?php foreach($assnact_src as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
 			</ul>
 			<div class="more">
-				<a href="/view/index.php?type=activity&host=%22asso%22">更多</a>
+				<a href="/activity.php?host=assn">更多</a>
 			</div>
 			<div class="clearer"></div>
 		</div>
@@ -59,9 +71,10 @@
 				<div class="clearer"></div>
 			</div>
 			<ul>
+<?php foreach($news_src as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
 			</ul>
 			<div class="more">
-				<a href="/view/index.php?type=news">更多</a>
+				<a href="/announcement.php?category=%E6%96%B0%E9%97%BB">更多</a>
 			</div>
 			<div class="clearer"></div>
 		</div>
@@ -72,9 +85,10 @@
 				<div class="clearer"></div>
 			</div>
 			<ul>
+<?php foreach($suact_src as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
 			</ul>
 			<div class="more">
-				<a href="/view/index.php?type=activity&host=%22su%22">更多</a>
+				<a href="/activity.php?host=su">更多</a>
 			</div>
 			<div class="clearer"></div>
 		</div>
