@@ -1,4 +1,8 @@
 <?php
+set_include_path($_SERVER['DOCUMENT_ROOT'] . '/phplib' . PATH_SEPARATOR . get_include_path());
+require_once 'config.php';
+require_once 'post.php';
+
 $activity_db = new PDO($DSN['activity']);
 $assnact_src = activity_query($activity_db, array('host' => 'assn', 'pagesize' => 5, 'offset' => 0));
 $suact_src = activity_query($activity_db, array('host' => 'su', 'pagesize' => 5, 'offset' => 0));
