@@ -88,7 +88,7 @@ $form->addElement(new Element\Radio("类型:", "category", $availcat, array(
 		"required" => 1,
 		"limited" => 1
 )));
-$form->addElement(new Element\Textarea("系列:", "series"));
+$form->addElement(new Element\Textbox("系列:", "series"));
 $form->addElement(new Element\Select("发布机构:", "host", $available_organizations, array(
 		"required" => 1,
 		"limited" => 1

@@ -93,7 +93,7 @@ $form->addElement(new Element\Radio("类型:", "category", $availcat, array(
 		"required" => 1,
 		"limited" => 1
 )));
-$form->addElement(new Element\Textarea("活动系列:", "series", array(
+$form->addElement(new Element\Textbox("活动系列:", "series", array(
 		"longDesc" => "活动所属系列的名称（比如讲座系列的名称）"
 )));
 $form->addElement(new Element\Textbox("活动地点:", "location", array(
