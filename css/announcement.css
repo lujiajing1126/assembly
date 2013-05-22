@@ -1,0 +1,37 @@
+.announcement-item {
+	padding: 10px;
+	margin: 6px;
+	height: 120px;
+	border: 1px solid #999999;
+	line-height: 18px;
+	font-size: 14px;
+}
+.announcement-item:hover {
+	background-color: #dddddd;
+}
+.announcement-inner {
+	position: relative;
+	height: 100%;
+}
+.announcement-description {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+.announcement-name {
+	height: 20px;
+	line-height: 20px;
+	font-size: 16px;
+}
+.announcement-abstract {
+	height: 82px;
+}
+.announcement-info {
+	height: 18px;
+}
+.announcement-info >* {
+	width: 50%;
+	float: left;
+}

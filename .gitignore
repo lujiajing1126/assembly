@@ -5,3 +5,4 @@ js/index.js
 js/json2.js
 post/post.js
 view/view.js
+*.swp

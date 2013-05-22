@@ -1,4 +1,4 @@
--- Table: activity
+﻿-- Table: activity
 
 -- DROP TABLE activity;
 
@@ -14,52 +14,52 @@ CREATE TABLE activity
   location text,
   host text NOT NULL,
   category text NOT NULL,
-  serial text,
+  series text,
   signature text NOT NULL,
   "timestamp" timestamp with time zone NOT NULL
 );
 
--- Index: category
+-- Index: activity_category
 
--- DROP INDEX category;
+-- DROP INDEX activity_category;
 
-CREATE INDEX category
+CREATE INDEX activity_category
   ON activity
   USING btree
   (category COLLATE pg_catalog."default");
 
--- Index: host
+-- Index: activity_host
 
--- DROP INDEX host;
+-- DROP INDEX activity_host;
 
-CREATE INDEX host
+CREATE INDEX activity_host
   ON activity
   USING btree
   (host COLLATE pg_catalog."default");
 
--- Index: serial
+-- Index: activity_series
 
--- DROP INDEX serial;
+-- DROP INDEX activity_series;
 
-CREATE INDEX serial
+CREATE INDEX activity_series
   ON activity
   USING btree
-  (serial COLLATE pg_catalog."default");
+  (series COLLATE pg_catalog."default");
 
--- Index: time_begin
+-- Index: activity_time_begin
 
--- DROP INDEX time_begin;
+-- DROP INDEX activity_time_begin;
 
-CREATE INDEX time_begin
+CREATE INDEX activity_time_begin
   ON activity
   USING btree
   (time_begin);
 
--- Index: time_end
+-- Index: activity_time_end
 
--- DROP INDEX time_end;
+-- DROP INDEX activity_time_end;
 
-CREATE INDEX time_end
+CREATE INDEX activity_time_end
   ON activity
   USING btree
   (time_end);
