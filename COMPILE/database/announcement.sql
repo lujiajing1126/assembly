@@ -20,8 +20,6 @@ CREATE TABLE announcement
 WITH (
   OIDS=FALSE
 );
-ALTER TABLE announcement
-  OWNER TO webdebugger;
 
 -- Index: announcement_category
 

@@ -83,9 +83,8 @@ function render_option ($name, $value, $label) {
 			类型：
 				<select name="category">
 					<option value="">所有</option>
-					<?php render_option("category", "讲座", "讲座"); ?>
-					<?php render_option("category", "比赛", "比赛"); ?>
-					<?php render_option("category", "其他", "其他"); ?>
+					<?php render_option("category", "公告", "公示"); ?>
+					<?php render_option("category", "新闻", "新闻"); ?>
 				</select>
 			<input type="submit" value="检索" />
 		</form>

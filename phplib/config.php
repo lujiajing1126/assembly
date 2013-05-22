@@ -1,5 +1,6 @@
 <?php
 $DSN = array (
-	'activity' => 'pgsql:host=localhost;user=su;password=sudb;dbname=su_main'
+        'activity' => 'pgsql:host=localhost;user=su;password=sudb;dbname=su_main',
+        'announcement' => 'pgsql:host=localhost;user=su;password=sudb;dbname=su_main'
 );
 ?>

@@ -46,7 +46,7 @@ unset($announcement_db);
 				<div class="clearer"></div>
 			</div>
 			<ul>
-<?php foreach($post_src as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
+<?php foreach($post_src['data'] as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
 			</ul>
 			<div class="more">
 				<a href="/announcement.php?category=%E5%85%AC%E5%91%8A">更多</a>
@@ -60,7 +60,7 @@ unset($announcement_db);
 				<div class="clearer"></div>
 			</div>
 			<ul>
-<?php foreach($assnact_src as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
+<?php foreach($assnact_src['data'] as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
 			</ul>
 			<div class="more">
 				<a href="/activity.php?host=assn">更多</a>
@@ -75,7 +75,7 @@ unset($announcement_db);
 				<div class="clearer"></div>
 			</div>
 			<ul>
-<?php foreach($news_src as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
+<?php foreach($news_src['data'] as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
 			</ul>
 			<div class="more">
 				<a href="/announcement.php?category=%E6%96%B0%E9%97%BB">更多</a>
@@ -89,7 +89,7 @@ unset($announcement_db);
 				<div class="clearer"></div>
 			</div>
 			<ul>
-<?php foreach($suact_src as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
+<?php foreach($suact_src['data'] as $item) echo '<li><a href="' . htmlentities($item['url']) . '">' . htmlentities($item['name']) . '</a></li>'; ?>
 			</ul>
 			<div class="more">
 				<a href="/activity.php?host=su">更多</a>

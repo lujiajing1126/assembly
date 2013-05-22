@@ -6,7 +6,7 @@
 			{"url": "/wiki/su/intro", "text": "校会简介"},
 			{"url": "/wiki/su/rsrc", "text": "资源文档"},
 			{"url": "/wiki/su/assn", "text": "社团在线"},
-			{"url": "/view/index.php?type=activity", "text": "活动信息"}],
+			{"url": "/wiki/activity/start", "text": "品牌活动"}],
 		"decorator": [
 			"<div class=\"frame_nav_dec_l\" />",
 			"<div class=\"frame_nav_dec_r\" />"]
