@@ -72,7 +72,7 @@ server {
 		rewrite ^(.*)$ /wiki$1 last;
 	}
 		location ~ ^/joinus {
-		rewrite ^(.*) ^/misc/joinus last;
+		rewrite ^/joinus$ /misc/joinus last;
 	}
 
         location ^~ /pdata/ {
