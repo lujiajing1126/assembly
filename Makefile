@@ -1,8 +1,8 @@
 JSC:=cat
 
-all: js/framework.js js/index.js js/json2.js post/post.js view/view.js
+all: js/framework.js js/index.js js/json2.js
 clean:
-	-rm js/framework.js js/index.js js/json2.js post/post.js view/view.js
+	-rm js/framework.js js/index.js js/json2.js
 js/framework.js: COMPILE/js/framework.js
 	$(JSC) -o js/framework.js COMPILE/js/framework.js 
 js/index.js: COMPILE/js/index.js
