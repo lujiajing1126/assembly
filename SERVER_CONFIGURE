@@ -71,16 +71,9 @@ server {
         location ^~ /news/ {
 		rewrite ^(.*)$ /wiki$1 last;
 	}
-	location ~ ^/joinus {
-		rewrite ^/joinus$ /misc/joinus last;
+	location = ^/joinus {
+		rewrite ^(.*) /misc/joinus last;
 	}
-	location ~ ^/joinus/ {
-		rewrite ^/joinus$ /misc/joinus last;
-	}
-	location ~ ^/ {
-		rewrite ^/joinus$ /misc/joinus last;
-	}
-
         location ^~ /pdata/ {
                 rewrite ^/pdata(/.*) $1 break;
                 proxy_pass http://su-dell-debian2;
