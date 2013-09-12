@@ -71,8 +71,9 @@ server {
         location ^~ /news/ {
 		rewrite ^(.*)$ /wiki$1 last;
 	}
-	location = ^/joinus {
-		rewrite ^(.*) /misc/joinus last;
+	location ~ ^/joinus {
+		rewrite ^/joinus /misc/joinus pernament;
+		break;
 	}
         location ^~ /pdata/ {
                 rewrite ^/pdata(/.*) $1 break;
