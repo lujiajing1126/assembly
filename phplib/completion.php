@@ -31,7 +31,7 @@ function probe_organization_id ($input) {
 			if ($aoid === $ainput) {
 				return array($oid, true);
 			} else {
-				$nx = array(strlen($aoid) - strlen($ao), 0, $oid);
+				$nx = array(strlen($ainput) - strlen($aoid), 0, $oid);
 				if ($n === false || $n > $nx) {
 					$n = $nx;
 				}
