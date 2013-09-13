@@ -87,6 +87,45 @@
 	function frameEnclose() {
 		var body = $("body");
 		if (!(body.hasClass("with_frame") || body.find("div.frame_prevent").length)) {
+			var cookies = {};
+			var cookie_pieces = (document.cookie? document.cookie : "").split(';');
+			for (i = 0; i < cookie_pieces.length; ++i) {
+				cookie_pieces[i] = cookie_pieces[i].trim();
+				var eq = cookie_pieces[i].indexOf('=');
+				if (eq === -1) {
+					cookies[cookie_pieces[i]] = null;
+				} else {
+					cookies[cookie_pieces[i].substr(0, eq)] = cookie_pieces[i].substr(eq + 1);
+				}
+			}
+			if (cookies['FWNG-ALPHA'] !== undefined) {
+				var main = $('<div id="framework-main"></div>');
+				main.append(body.contents());
+				body.addClass('FWNG-ALPHA');
+				body.append('<div id="framework-header">'
+						+'<div id="framework-header-leftdec"></div>'
+						+'<div id="framework-header-rightdec"></div>'
+						+'<div id="framework-titlewrap">'
+							+'<div id="framework-title">'
+								+'<div id="framework-title-a"></div>'
+								+'<div id="framework-title-b"></div>'
+								+'<div id="framework-title-c"></div>'
+							+'</div>'
+						+'</div>'
+					+'</div>');
+				body.append($('<div id="framework-navi"></div>')
+					.append(frameNavOl)
+					.append($("<div/>", {"class": "frame_clearer"})));
+				body.append($('<div id="framework-mainwrap"></div>')
+					.append(main));
+				body.append('<div id="framework-tail">'
+						+'<div id="framework-tail-right"></div>'
+						+'<div id="framework-tail-left"></div>'
+						+'<div id="framework-tail-bar"></div>'
+					+'</div>');
+				return;
+			}
+
 			body.addClass("with_frame");
 			var escaped = $(".frame_escape").detach();
 			frameCore
