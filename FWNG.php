@@ -4,3 +4,5 @@ if (isset($_COOKIE['FWNG-ALPHA'])) {
 } else {
 	setcookie('FWNG-ALPHA', "true");
 }
+
+header('Location: /', 302);
