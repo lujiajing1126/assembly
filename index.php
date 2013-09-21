@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 set_include_path($_SERVER['DOCUMENT_ROOT'] . '/phplib' . PATH_SEPARATOR . get_include_path());
 require_once 'config.php';
 require_once 'post.php';
@@ -28,7 +28,7 @@ unset($announcement_db);
 		<script type="text/javascript" src="/js/index.js"></script>
 	</head>
 	<body>
-		<div class="pav" style="background-image: url(/campstar-2013.jpg); cursor: pointer" onclick="javascript: window.location = '/misc/campstar-2013/'"></div>
+		<div class="pav" style="background-image: url(/yingxin-2013.jpg); cursor: pointer" onclick="javascript: window.location = '/wiki/su_art/yx/start'"></div>
 		<div id="kjfw">
 			<div class="button-center-ref">
 				<div class="button-center"></div>
