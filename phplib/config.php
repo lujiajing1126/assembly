@@ -4,7 +4,7 @@ $DSN = array (
         'announcement' => 'pgsql:host=localhost;user=su;password=sudb;dbname=su_main'
 );
 
-$SERVER['DOCUMENT_ROOT'] = rtrim($SERVER['DOCUMENT_ROOT'], DIRECTORY_SEPARATOR);
+$_SERVER['DOCUMENT_ROOT'] = rtrim($_SERVER['DOCUMENT_ROOT'], DIRECTORY_SEPARATOR);
 
-$LIBDIR = $SERVER['DOCUMENT_ROOT'] . '.lib';
+$LIBDIR = $_SERVER['DOCUMENT_ROOT'] . '.lib';
 ?>
