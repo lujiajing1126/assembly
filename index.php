@@ -17,6 +17,7 @@ unset($announcement_db);
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+		<meta property="wb:webmaster" content="a275bb714479555e" />
 		<title>复旦大学学生会</title>
 		<link type="text/css" href="/jquery/css/default/jquery-ui.css" rel="Stylesheet" />
 		<script type="text/javascript" src="/jquery/js/jquery.js"></script>
