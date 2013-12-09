@@ -1,7 +1,9 @@
 <?php
 //set_include_path($_SERVER['DOCUMENT_ROOT'] . '/phplib' . PATH_SEPARATOR . get_include_path());
-require_once '../phplib/config.php';
-require_once '../phplib/post.php';
+require_once 'phplib/config.php';
+require_once 'phplib/post.php';
+require_once 'phplib/siteauth.php';
+
 
 $toplistactivity=array();
 $toplistannouncement=array();
@@ -10,17 +12,25 @@ $activity_db = new PDO($DSN['activity']);
 $assnact_src = activity_query($activity_db, array('host' => 'assn', 'pagesize' => 5, 'offset' => 0));
 $suact_src = activity_query($activity_db, array('host' => 'su', 'pagesize' => 5, 'offset' => 0));
 
-$assnact_srcq = activity_query($activity_db, array('host' => 'assn', 'pagesize' => 5, 'offset' => 0));
-$suact_srcq = activity_query($activity_db, array('host' => 'su', 'pagesize' => 5, 'offset' => 0));
+$assnact_srcq = activity_query($activity_db, array('host' => 'assn', 'pagesize' => 100, 'offset' => 0));
+$suact_srcq = activity_query($activity_db, array('host' => 'su', 'pagesize' => 100, 'offset' => 0));
 
-foreach($assnact_srcq['data'] as $item)
-	if( strlen($item['introduction'])>0&&strlen($item['introduction'])<600&&strlen($item['image_url'])>0)
+foreach($assnact_srcq['data'] as $item){
+	if( strlen($item['introduction'])>0&&strlen($item['introduction'])<600&&strlen($item['image_url'])>0&&strlen($item['name'])>0&&strlen($item['name'])<60)
 		array_push($toplistactivity,$item);
-
-foreach($suact_srcq['data'] as $item)
-	if( strlen($item['introduction'])>0&&strlen($item['introduction'])<600&&strlen($item['image_url'])>0)
+	else if(strlen($item['introduction'])==0&&strlen($item['image_url'])>0&&strlen($item['name'])>0&&strlen($item['name'])<60){
+		$item['introduction']="暂缺";
 		array_push($toplistactivity,$item);
-
+	}
+}
+foreach($suact_srcq['data'] as $item){
+	if( strlen($item['introduction'])>0&&strlen($item['introduction'])<600&&strlen($item['image_url'])>0&&strlen($item['name'])>0&&strlen($item['name'])<60)
+		array_push($toplistactivity,$item);
+	else if(strlen($item['introduction'])==0&&strlen($item['image_url'])>0&&strlen($item['name'])>0&&strlen($item['name'])<60){
+		$item['introduction']="暂缺";
+		array_push($toplistactivity,$item);
+	}
+}
 unset($activity_db);
 
 $announcement_db = new PDO($DSN['announcement']);
@@ -30,14 +40,24 @@ $news_src = announcement_query($announcement_db, array('category' => '新闻', '
 $post_srca = announcement_query($announcement_db, array('category' => '公告', 'pagesize' => 100, 'offset' => 0));
 $news_srca = announcement_query($announcement_db, array('category' => '新闻', 'pagesize' => 100, 'offset' => 0));
 
-foreach($post_srca['data'] as $item)
+foreach($post_srca['data'] as $item){
 	if( strlen($item['abstract'])>0&&strlen($item['abstract'])<600&&strlen($item['name'])>0&&strlen($item['name'])<60)
 		array_push($toplistannouncement,$item);
+	else if(strlen($item['abstract'])==0&&strlen($item['name'])>0&&strlen($item['name'])<60){
+		$item['abstract']="暂缺";
+		array_push($toplistannouncement,$item);
+	}
+		
+}
 
-foreach($news_srca['data'] as $item)
+foreach($news_srca['data'] as $item){
 	if( strlen($item['abstract'])>0&&strlen($item['abstract'])<600&&strlen($item['name'])>0&&strlen($item['name'])<60)
 		array_push($toplistannouncement,$item);
-
+	else if(strlen($item['abstract'])==0&&strlen($item['name'])>0&&strlen($item['name'])<60){
+		$item['abstract']="暂缺";
+		array_push($toplistannouncement,$item);
+	}
+}
 unset($announcement_db);
 ?>
 <!DOCTYPE html>
@@ -58,10 +78,13 @@ unset($announcement_db);
 
 		<link rel="stylesheet" href="css/bootstrap.min.css" />
 		<link rel="stylesheet" href="css/bootstrap-theme.min.css" />
+		
+		
 		<script src="js/vendor/modernizr-2.6.2.min.js"></script>
 
 		<link rel="stylesheet" href="css/index.css" />
 		<link rel="shortcut icon" href="../favicon.ico">
+		<link rel="stylesheet" type="text/css" href="fd_su/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/style.css" />
 		<link rel="stylesheet" type="text/css" href="css/jquery.jscrollpane.css" media="all" />
 	</head>
@@ -121,19 +144,54 @@ unset($announcement_db);
 						<li>
 							<a href="#">RSS</a>
 						</li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">用户操作 <b class="caret"></b></a>
+					
+  						<li class="dropdown">
+							<a data-toggle="dropdown" href="#">用户操作 <b class="caret"></b></a>
 							<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+								<?php
+								
+								function curPageURL() 
+								{
+									$pageURL = 'http';
+									if ($_SERVER["HTTPS"] == "on") 
+									{
+										$pageURL .= "s";
+									}
+									$pageURL .= "://";
+								
+									if ($_SERVER["SERVER_PORT"] != "80") 
+									{
+										$pageURL .= $_SERVER["SERVER_NAME"] . ":" . $_SERVER["SERVER_PORT"] . $_SERVER["REQUEST_URI"];
+									} 
+									else 
+									{
+										$pageURL .= $_SERVER["SERVER_NAME"] . $_SERVER["REQUEST_URI"];
+									}
+									return $pageURL;
+								}
+
+								if(get_login_data()){
+								echo '
 								<li>
-									<a href="#">办公页面</a>
+									<a href="http://su.fudan.edu.cn/system/home">办公页面</a>
 								</li>
 								<li>
-									<a href="#">个人设置</a>
+									<a href="http://su.fudan.edu.cn/system/user">个人设置</a>
 								</li>
 								<li class="divider"></li>
 								<li>
-									<a href="#">登出</a>
-								</li>
+									<a href="http://su.fudan.edu.cn/system/login?logout=site">登出</a>
+								</li>';
+								}
+								else
+								{
+								echo '
+								
+								<li>
+									<a href="http://su.fudan.edu.cn/system/login?continue='.urlencode(curPageURL()).'">请登录</a>
+								</li>';
+								}
+								?>
 							</ul>
 						</li>
 					</ul>
@@ -158,13 +216,19 @@ unset($announcement_db);
 			<!-- begin function bar -->
 			<ul class="categories">
 				<li class="cat-item cat-item-1">
-					<a href="http://localhost/wordpress/?cat=1" title="查看未分类下的所有文章">未分类</a>
+					<a href="http://su.fudan.edu.cn/wiki/su_aac/download" title="教室借用">教室借用</a>
 				</li>
 				<li class="cat-item cat-item-1">
-					<a href="http://localhost/wordpress/?cat=1" title="查看未分类下的所有文章">未分类</a>
+					<a href="http://su.fudan.edu.cn/post/index.html" title="信息发布">信息发布</a>
 				</li>
 				<li class="cat-item cat-item-1">
-					<a href="http://localhost/wordpress/?cat=1" title="查看未分类下的所有文章">未分类</a>
+					<a href="http://su.fudan.edu.cn/wiki/su/assn" title="精品社团">精品社团</a>
+				</li>
+				<li class="cat-item cat-item-1">
+					<a href="http://su.fudan.edu.cn/wiki/su_aac/download" title="横幅出借">横幅出借</a>
+				</li>
+				<li class="cat-item cat-item-1">
+					<a href="http://su.fudan.edu.cn/wiki/su/intro" title="快捷服务">快捷服务</a>
 				</li>
 			</ul>
 			<!-- end function bar -->
@@ -231,7 +295,7 @@ unset($announcement_db);
 						<div class=\"ca-item-main\">
 							<div class=\"ca-icon\"></div>
 							<h3>".$item['name']."</h3>
-							<h4><span>".$item['introduction']."</span></h4>
+							<h4><span>".$item['abstract']."</span></h4>
 							<a href=\"".$item['url']."\" class=\"ca-more\">详情</a>
 						</div>
 						<div class=\"ca-content-wrapper\">
@@ -264,11 +328,15 @@ unset($announcement_db);
 				
 				<div class="ca-list">
 				
-				<a href="#" class="ca-list-item sel"><h4>复旦大学学生会</h4></a>
+				
 				
 					<?php
-					foreach($toplistactivity as $item) 
-						echo "<a href=\"#\" class=\"ca-list-item\"><h4>".$item['name']."</h4></a>";
+					$itemnum=0;
+					foreach($toplistactivity as $item) {
+						if($itemnum==0)	echo "<a href=\"#\" class=\"ca-list-item sel\"><h4>".$item['name']."</h4></a>";
+						else echo  "<a href=\"#\" class=\"ca-list-item\"><h4>".$item['name']."</h4></a>";
+						$itemnum++;
+					}
 					foreach($toplistannouncement as $item) 
 						echo "<a href=\"#\" class=\"ca-list-item\"><h4>".$item['name']."</h4></a>";
 					
@@ -349,14 +417,6 @@ unset($announcement_db);
 		
 		</div>
 
-
-			<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-			<script type="text/javascript" src="js/jquery.contentcarousel.js"></script>
-			<script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-			<script type="text/javascript" src="js/unslider.js"></script>
-			<script type="text/javascript">
-				$('#ca-container').contentcarousel();
-			</script>
 <script type="text/javascript">document.write('<iframe id="weibo" width="260" height="489" frameborder="0" scrolling="no" src="http://widget.weibo.com/relationship/bulkfollow.php?language=zh_cn&uids=1729332983,1949791100&wide=1&color=FFFFFF,FFFFFF,0082CB,666666&showtitle=1&showinfo=1&sense=1&verified=1&count=2&refer='+encodeURIComponent(location.href)+'&dpc=1" id="weibo"></iframe>')</script>
 		<!-- end of content -->
 
@@ -401,8 +461,7 @@ unset($announcement_db);
 
 </script>
 			<script type="text/javascript">
-/*				Modernizr.load([{
-//					load : ['js/vendor/jquery-1.10.2.min.js'],
+				Modernizr.load([{
 					load : ['//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'],
 					complete : function() {
 						if (!window.jQuery) {
@@ -412,14 +471,14 @@ unset($announcement_db);
 				}, {
 					// This will wait for the fallback to load and
 					// execute if it needs to.
-//					load : ['js/jquery.contentcarousel.js','js/jquery.easing.1.3.js', 'js/vendor/bootstrap.min.js', 'js/unslider.js']
+					load : ['js/jquery.contentcarousel.js','js/jquery.easing.1.3.js', 'js/vendor/bootstrap.min.js', 'js/unslider.js']
 				}, {
 					load : ['js/vendor/sea.js', 'js/sea-modules/config.js'],
 					complete : function() {
 						seajs.use('common');
 						seajs.use('index/main');
 					}
-				}]);*/
+				}]);
 			</script>
 		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
 		<script>
