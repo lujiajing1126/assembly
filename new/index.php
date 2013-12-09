@@ -1,8 +1,8 @@
 <?php
 //set_include_path($_SERVER['DOCUMENT_ROOT'] . '/phplib' . PATH_SEPARATOR . get_include_path());
-require_once 'phplib/config.php';
-require_once 'phplib/post.php';
-require_once 'phplib/siteauth.php';
+require_once '../phplib/config.php';
+require_once '../phplib/post.php';
+require_once '../phplib/siteauth.php';
 
 
 $toplistactivity=array();
