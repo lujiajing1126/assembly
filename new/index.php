@@ -462,7 +462,7 @@ unset($announcement_db);
 </script>
 			<script type="text/javascript">
 				Modernizr.load([{
-					load : ['//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'],
+					load : ['js/vendor/jquery-1.10.2.min.js'],
 					complete : function() {
 						if (!window.jQuery) {
 							Modernizr.load('js/vendor/jquery-1.10.2.min.js');

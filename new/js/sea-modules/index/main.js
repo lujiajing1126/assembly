@@ -11,4 +11,5 @@ define(function(require, exports, module) {
 		// arrows: true
 	});
 	$('#ca-container').contentcarousel();
+	$('.ca-list-item').first().addClass("sel");
 });
